@@ -9,6 +9,7 @@ class Hotel(models.Model):
     phone = models.CharField('Telefone', max_length=15)
 
     class Meta:
+        unique_together = ['name', 'city', ]
         ordering = ['name', ]
         verbose_name = 'Hotel'
         verbose_name_plural = 'Hotéis'
