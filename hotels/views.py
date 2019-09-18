@@ -12,11 +12,11 @@ class HotelViewSet(ModelViewSet):
     def get_permissions(self):
         permission_classes = []
 
-        if self.action == 'create' or self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [IsAuthenticated, ]
-        elif self.action == 'list' or self.action == 'retrieve':
+        if self.action == 'list' or self.action == 'retrieve':
             permission_classes = [AllowAny, ]
         elif self.action == 'destroy':
             permission_classes = [IsAdminUser, ]
+        else:
+            permission_classes = [IsAuthenticated, ]
 
         return [permission() for permission in permission_classes]
