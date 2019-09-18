@@ -1,5 +1,6 @@
 from uuid import uuid4
 
+from django.core.validators import MinValueValidator
 from django.db import models
 
 from hotels.models import Hotel
@@ -7,7 +8,8 @@ from hotels.models import Hotel
 
 class Room(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
-    number = models.IntegerField('Número')
+    number = models.IntegerField(
+        'Número', validators=[MinValueValidator(1, message='Permitido apenas números positivos.')])
     description = models.CharField('Descrição', max_length=100, null=True)
     hotel = models.ForeignKey(
         Hotel, related_name='rooms', on_delete=models.CASCADE)
