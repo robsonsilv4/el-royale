@@ -1,3 +1,5 @@
+from uuid import uuid4
+
 from django.contrib.auth.models import (AbstractBaseUser, BaseUserManager,
                                         PermissionsMixin)
 from django.db import models
@@ -26,6 +28,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    public_id = models.UUIDField(default=uuid4, editable=False)
     name = models.CharField('Nome', max_length=255)
     email = models.EmailField('Email', max_length=255, unique=True)
     is_active = models.BooleanField(default=True)

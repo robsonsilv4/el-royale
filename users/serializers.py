@@ -9,7 +9,7 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('name', 'email', 'password')
+        fields = ('public_id', 'name', 'email', 'password')
 
     # Para encriptar a senha
     def create(self, validated_data):

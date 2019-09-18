@@ -1,10 +1,7 @@
-from uuid import uuid4
-
 from django.db import models
 
 
 class Hotel(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
     name = models.CharField('Nome', max_length=100)
     address = models.CharField('Endereço', max_length=255)
     city = models.CharField('Cidade', max_length=100)
