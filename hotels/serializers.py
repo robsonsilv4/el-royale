@@ -6,8 +6,9 @@ from .models import Hotel
 
 
 class HotelSerializer(ModelSerializer):
-    rooms = RoomSerializer(many=True, read_only=True)
+    # rooms = RoomSerializer(many=True, read_only=True)
 
     class Meta:
         model = Hotel
-        fields = ('id', 'name',  'address', 'city', 'state', 'phone', 'rooms',)
+        fields = ('id', 'name',  'address', 'city',
+                  'state', 'phone',)  # 'rooms'

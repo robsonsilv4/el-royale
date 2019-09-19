@@ -2,7 +2,7 @@
 
 API RESTFul de gerenciamento de cadastro de hotéis, desenvolvida para o desáfio da Stopover.
 
-O nome El Royale é inspirado no filme Maus Momentos no Hotel Royale de 2018.
+O nome El Royale é inspirado no filme: Maus Momentos no Hotel Royale de 2018.
 
 ## Descrição
 
@@ -10,7 +10,7 @@ As instruções a seguir, irão mostrar como rodar o projeto em sua máquina.
 
 ### Pré-requisitos
 
-É preciso ter o Docker e Docker Compose instalados.
+É preciso ter o Docker e o Docker Compose instalados.
 
 Por exemplo, no Arch Linux:
 
@@ -36,36 +36,27 @@ docker-compose up -d --build
 
 Caso queira criar um usuário administrador, execute:
 
-```
+```sh
 docker-compose run web python /code/manage.py createsuperuser
 ```
 
-Estes são os endpoints disponibilizados pela API:
+Para carregar os dados iniciais do banco, execute:
 
-| Recursos              | Métodos | Descrição                     |
-| --------------------- | ------- | ----------------------------- |
-| api/v1/users/         | POST    | Registra um usuário           |
-| api/v1/login/         | POST    | Retorna os tokens de acesso   |
-| api/v1/login/refresh/ | POST    | Atualiza o token de acesso    |
-| api/v1/hotels/        | POST    | Cadastra um hotel             |
-| api/v1/hotels/        | GET     | Retorna a lista de hotéis     |
-| api/v1/hotels/?page   | GET     | Retorna uma página específica |
-| api/v1/hotels/id/     | GET     | Retorna detalhes de um hotel  |
-| api/v1/hotels/id/     | PUT     | Atualiza dados de um hotel    |
-| api/v1/hotels/?state  | GET     | Filtra hotéis por estado      |
-| api/v1/hotels/?city   | GET     | Filtra hotéis por cidade      |
-| api/v1/rooms/         | POST    | Cadastra um quarto            |
-| api/v1/rooms/         | GET     | Retorna a lista quartos       |
-| api/v1/rooms/id/      | GET     | Retona detalhes de um quarto  |
-| api/v1/rooms/id/      | PUT     | Atualiza dados de um quarto   |
+```
+docker-compose run web python /code/manage.py loaddata fixtures.json
+```
 
-Também é possível consultar a [documentção](https://documenter.getpostman.com/view/3396193/SVmwvd7Y) gerada pelo Postman.
+### Documentação e testes
 
-Os testes podem ser feitos utilizando a [collection de exemplo](https://www.getpostman.com/collections/f4fdd8fe943d8b24239a).
+A documentação está dispovível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/).
+
+Também há uma interface web, caso os recursos sejam acessados utilizando o browser.
+
+Os testes podem ser realizados com o Postman, utilizando a [collection de exemplo](collection).
 
 ### Estilo de código
 
-O projeto utiliza o guia de estiolos do [PEP8](https://www.python.org/dev/peps/pep-0008/).
+O projeto utiliza o guia de estilos do [PEP8](https://www.python.org/dev/peps/pep-0008/).
 
 ## Feito utilizando
 
