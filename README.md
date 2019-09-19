@@ -42,22 +42,22 @@ docker-compose run web python /code/manage.py createsuperuser
 
 Estes são os endpoints disponibilizados pela API:
 
-| Endpoints             | Métodos | Descrição |
-| --------------------- | ------- | --------- |
-| api/v1/users/         | POST    |           |
-| api/v1/login/         | POST    |           |
-| api/v1/login/refresh/ | POST    |           |
-| api/v1/hotels/        | POST    |           |
-| api/v1/hotels/        | GET     |           |
-| api/v1/hotels/?page   | GET     |           |
-| api/v1/hotels/id/     | GET     |           |
-| api/v1/hotels/id/     | PUT     |           |
-| api/v1/hotels/?state  | GET     |           |
-| api/v1/hotels/?city   | GET     |           |
-| api/v1/rooms/         | POST    |           |
-| api/v1/rooms/         | GET     |           |
-| api/v1/rooms/id/      | GET     |           |
-| api/v1/rooms/id/      | PUT     |           |
+| Recursos              | Métodos | Descrição                     |
+| --------------------- | ------- | ----------------------------- |
+| api/v1/users/         | POST    | Registra um usuário           |
+| api/v1/login/         | POST    | Retorna os tokens de acesso   |
+| api/v1/login/refresh/ | POST    | Atualiza o token de acesso    |
+| api/v1/hotels/        | POST    | Cadastra um hotel             |
+| api/v1/hotels/        | GET     | Retorna a lista de hotéis     |
+| api/v1/hotels/?page   | GET     | Retorna uma página específica |
+| api/v1/hotels/id/     | GET     | Retorna detalhes de um hotel  |
+| api/v1/hotels/id/     | PUT     | Atualiza dados de um hotel    |
+| api/v1/hotels/?state  | GET     | Filtra hotéis por estado      |
+| api/v1/hotels/?city   | GET     | Filtra hotéis por cidade      |
+| api/v1/rooms/         | POST    | Cadastra um quarto            |
+| api/v1/rooms/         | GET     | Retorna a lista quartos       |
+| api/v1/rooms/id/      | GET     | Retona detalhes de um quarto  |
+| api/v1/rooms/id/      | PUT     | Atualiza dados de um quarto   |
 
 Também é possível consultar a [documentção](https://documenter.getpostman.com/view/3396193/SVmwvd7Y) gerada pelo Postman.
 
@@ -74,7 +74,9 @@ O projeto utiliza o guia de estiolos do [PEP8](https://www.python.org/dev/peps/p
 - Python
 - Pipenv
 - Django
+- Usuário Customizado
 - Django REST Framework
+- CORS
 - JWT
 - Filtros
 - PostgreSQL

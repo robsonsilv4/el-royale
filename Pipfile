@@ -11,6 +11,7 @@ psycopg2-binary = "*"
 djangorestframework = "*"
 djangorestframework-simplejwt = "*"
 django-filter = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.7"

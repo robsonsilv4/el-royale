@@ -3,7 +3,7 @@ import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-SECRET_KEY = '4t+1%k9)0y37(y&5a-l70f%#yckg$^nts!7zlnaxjv(x#3wk@n'
+SECRET_KEY = 'desafiostopover'
 
 DEBUG = True
 
@@ -20,6 +20,7 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'rest_framework',
+    'corsheaders',
     'django_filters',
 )
 
@@ -34,6 +35,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -98,8 +100,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# APPEND_SLASH = False
-
 AUTH_USER_MODEL = 'users.User'
 
 REST_FRAMEWORK = {
@@ -119,3 +119,5 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     )
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
