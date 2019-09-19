@@ -9,6 +9,9 @@ class RoomViewSet(ModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
 
+    def get_queryset(self):
+        return Room.objects.filter(hotel=self.kwargs['hotel_pk'])
+
     def get_permissions(self):
         permission_classes = []
 
