@@ -12,6 +12,12 @@ class RoomViewSet(ModelViewSet):
     def get_queryset(self):
         return Room.objects.filter(hotel=self.kwargs['hotel_pk'])
 
+    def perform_create(self, serializer):
+        serializer.save(hotel_id=self.kwargs['hotel_pk'])
+
+    def perform_update(self, serializer):
+        serializer.save(hotel_id=self.kwargs['hotel_pk'])
+
     def get_permissions(self):
         permission_classes = []
 
