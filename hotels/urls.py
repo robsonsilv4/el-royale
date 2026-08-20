@@ -12,7 +12,7 @@ hotel_router.register('hotels', HotelViewSet, 'hotels')
 # Recursos aninhados de hotéis/quartos
 room_router = routers.NestedSimpleRouter(
     hotel_router, 'hotels', lookup='hotel')
-room_router.register('rooms', RoomViewSet, base_name='hotels')
+room_router.register('rooms', RoomViewSet, basename='hotels')
 
 app_name = 'hotels'
 urlpatterns = (

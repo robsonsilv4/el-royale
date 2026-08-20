@@ -22,7 +22,6 @@ THIRD_PARTY_APPS = (
     'rest_framework',
     'corsheaders',
     'django_filters',
-    'drf_yasg',
 )
 
 LOCAL_APPS = (
@@ -100,6 +99,8 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 AUTH_USER_MODEL = 'users.User'
 
