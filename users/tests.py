@@ -140,6 +140,19 @@ class UpdateOwnProfileTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, 'Novo Nome')
+        self.assertTrue(self.user.check_password('nova-senha-123'))
+        self.assertNotEqual(self.user.password, 'nova-senha-123')
+
+    def test_update_hashes_password(self):
+        self.client.force_authenticate(self.user)
+
+        response = self.client.patch(
+            f'/api/v1/users/{self.user.id}/', {'password': 'nova-senha-123'}, format='json')
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.user.refresh_from_db()
+        self.assertTrue(self.user.check_password('nova-senha-123'))
+        self.assertNotEqual(self.user.password, 'nova-senha-123')
 
     def test_user_cannot_update_another_profile(self):
         self.client.force_authenticate(self.user)
