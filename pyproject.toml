@@ -1,3 +1,28 @@
+[project]
+name = "el-royale"
+version = "0.1.0"
+description = "API para gerenciamento de cadastro de hotéis"
+requires-python = ">=3.14"
+dependencies = [
+    "django~=5.2",
+    "psycopg2-binary",
+    "djangorestframework~=3.16",
+    "djangorestframework-simplejwt~=5.5",
+    "django-filter~=25.1",
+    "django-cors-headers~=4.7",
+    "drf-nested-routers~=0.93.5",
+    "drf-spectacular~=0.28",
+    "packaging",
+]
+
+[dependency-groups]
+dev = [
+    "ruff",
+]
+
+[tool.uv]
+package = false
+
 [tool.ruff]
 target-version = "py314"
 line-length = 88
