@@ -141,6 +141,13 @@ class AdminDestroyTests(APITestCase):
         self.assertFalse(Hotel.objects.filter(id=self.hotel.id).exists())
 
 
+class HotelModelTests(APITestCase):
+    def test_str_returns_name(self):
+        hotel = make_hotel(name="Hotel Fortaleza")
+
+        self.assertEqual(str(hotel), "Hotel Fortaleza")
+
+
 class FilterTests(APITestCase):
     def setUp(self):
         cache.clear()

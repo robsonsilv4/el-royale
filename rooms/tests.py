@@ -28,6 +28,14 @@ def room_payload(number=101, description="Suite"):
     return {"number": number, "description": description}
 
 
+class RoomModelTests(APITestCase):
+    def test_str_returns_number_and_hotel_name(self):
+        hotel = make_hotel(name="Hotel Fortaleza")
+        room = Room.objects.create(number=101, hotel=hotel)
+
+        self.assertEqual(str(room), "101 - Hotel Fortaleza")
+
+
 class RoomListTests(APITestCase):
     def setUp(self):
         cache.clear()

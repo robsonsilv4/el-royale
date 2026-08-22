@@ -1,7 +1,9 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from rest_framework.test import APITestCase
+from rest_framework.test import APIRequestFactory, APITestCase
 from rest_framework_simplejwt.tokens import RefreshToken
+
+from .permissions import UpdateOwnProfile
 
 User = get_user_model()
 
@@ -55,6 +57,40 @@ class UserCreationTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertIn("password", response.data)
+
+
+class UserManagerTests(APITestCase):
+    def test_create_user_requires_email(self):
+        with self.assertRaises(ValueError) as context:
+            User.objects.create_user(name="João", email=None)
+
+        self.assertEqual(str(context.exception), "O email é obrigatório.")
+
+
+class UserModelTests(APITestCase):
+    def setUp(self):
+        self.user = make_user(name="João Silva")
+
+    def test_get_full_name_returns_name(self):
+        self.assertEqual(self.user.get_full_name(), "João Silva")
+
+    def test_get_shot_name_returns_name(self):
+        self.assertEqual(self.user.get_shot_name(), "João Silva")
+
+    def test_str_returns_name(self):
+        self.assertEqual(str(self.user), "João Silva")
+
+
+class UpdateOwnProfilePermissionTests(APITestCase):
+    def setUp(self):
+        self.user = make_user()
+        self.request = APIRequestFactory().get(f"/api/v1/users/{self.user.id}/")
+        self.request.user = self.user
+
+    def test_safe_methods_are_allowed(self):
+        permission = UpdateOwnProfile()
+
+        self.assertTrue(permission.has_object_permission(self.request, None, self.user))
 
 
 class LoginTests(APITestCase):
