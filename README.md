@@ -15,7 +15,7 @@ O nome El Royale é inspirado no filme: Maus Momentos no Hotel Royale de 2018.
 - [drf-spectacular](https://drf-spectacular.readthedocs.io/) (Swagger em `/api/v1/docs/` e schema em `/api/v1/schema/`)
 - [PostgreSQL](https://www.postgresql.org/) / [SQLite](https://www.sqlite.org/)
 - [Docker](https://www.docker.com/) / [Docker Compose](https://docs.docker.com/compose/)
-- [Pipenv](https://pipenv.pypa.io/)
+- [uv](https://docs.astral.sh/uv/) (gerenciador de dependências)
 
 ## Endpoints
 
