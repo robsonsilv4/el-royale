@@ -57,11 +57,17 @@ docker-compose run web python /code/manage.py loaddata fixtures.json
 
 ### Documentação e testes
 
-A documentação está dispovível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/).
+A documentação está disponível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/).
 
 Se deseja acessar os recursos utilizando o browser (navegador), há uma interface web disponível.
 
-Os testes podem ser realizados com o Postman, utilizando a [collection de exemplo](collection).
+Para executar a suíte de testes automatizados:
+
+```sh
+docker-compose run web python /code/manage.py test
+```
+
+Os testes também podem ser realizados com o Postman, utilizando a [collection de exemplo](collection).
 
 ### Estilo de código
 
