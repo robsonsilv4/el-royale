@@ -97,4 +97,4 @@ O projeto utiliza o guia de estilos do [PEP8](https://www.python.org/dev/peps/pe
 
 ## Licença
 
-Esse projeto está licensiado sob os termos da licença do MIT - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
+Esse projeto está licenciado sob os termos da licença do MIT - veja o arquivo [LICENSE.md](LICENSE.md) para mais detalhes.
