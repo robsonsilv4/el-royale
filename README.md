@@ -94,19 +94,29 @@ Para carregar os dados iniciais do banco, execute:
 docker-compose run web python /code/manage.py loaddata fixtures.json
 ```
 
-### Documentação e testes
+### Documentação
 
-A documentação está disponível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/).
+A documentação interativa (Swagger) está disponível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/). Há também uma interface web navegável (Browsable API) nos próprios endpoints.
 
-Se deseja acessar os recursos utilizando o browser (navegador), há uma interface web disponível.
+## Variáveis de ambiente
 
-Para executar a suíte de testes automatizados:
+| Variável | Obrigatória | Padrão | Descrição |
+|---|---|---|---|
+| `DJANGO_SECRET_KEY` | sim | — | chave secreta do Django; gere com `secrets.token_urlsafe(50)` |
+| `DJANGO_DEBUG` | não | `false` | liga o modo de depuração |
+| `DJANGO_ALLOWED_HOSTS` | não | vazio | hosts permitidos, separados por vírgula |
+
+Copie o `.env.example` para `.env` e ajuste os valores. O arquivo `.env` já é ignorado pelo git.
+
+## Testes
+
+Para executar a suíte de testes automatizados (users, hotels e rooms):
 
 ```sh
 docker-compose run web python /code/manage.py test
 ```
 
-Os testes também podem ser realizados com o Postman, utilizando a [collection de exemplo](collection).
+Também há uma [collection de exemplo para o Postman](collection) para explorar os endpoints manualmente.
 
 ### Estilo de código
 
