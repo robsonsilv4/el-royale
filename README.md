@@ -73,23 +73,18 @@ Os testes também podem ser realizados com o Postman, utilizando a [collection d
 
 O projeto utiliza o guia de estilos do [PEP8](https://peps.python.org/pep-0008/).
 
-## Feito utilizando
+## Stack
 
-- [Docker](https://www.docker.com/)
-- [Docker Compose](https://docs.docker.com/compose/)
-- [Python](https://www.python.org/)
-- [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/)
-- [Django](https://www.djangoproject.com/start/)
-- Usuário Customizado
-- [Django REST Framework](https://www.django-rest-framework.org/)
-- CORS
-- [JWT](https://jwt.io/)
-- Filtros
-- [PostgreSQL](https://www.postgresql.org/)
-- [SQLite3](https://www.sqlite.org/index.html)
-- [Postman](https://www.getpostman.com/)
-- [Arch Linux](https://www.archlinux.org/)
-- [Visual Studio Code](https://code.visualstudio.com/)
+- [Django 5.2](https://www.djangoproject.com/) (Python 3.14)
+- [Django REST Framework 3.18](https://www.django-rest-framework.org/)
+- [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/)
+- [django-filter](https://django-filter.readthedocs.io/)
+- [django-cors-headers](https://github.com/adamchainz/django-cors-headers)
+- [drf-nested-routers](https://github.com/alanjds/drf-nested-routers)
+- [drf-spectacular](https://drf-spectacular.readthedocs.io/) (Swagger em `/api/v1/docs/` e schema em `/api/v1/schema/`)
+- [PostgreSQL](https://www.postgresql.org/) / [SQLite](https://www.sqlite.org/)
+- [Docker](https://www.docker.com/) / [Docker Compose](https://docs.docker.com/compose/)
+- [Pipenv](https://pipenv.pypa.io/)
 
 ## Autor
 
