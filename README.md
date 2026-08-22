@@ -26,6 +26,15 @@ Clone o repositório:
 git clone https://github.com/robsonsilv4/el-royale.git && cd el-royale
 ```
 
+Configure as variáveis de ambiente copiando o exemplo e gerando uma chave secreta real:
+
+```sh
+cp .env.example .env
+python -c "import secrets; print(secrets.token_urlsafe(50))"
+```
+
+Cole o valor gerado como `DJANGO_SECRET_KEY` no arquivo `.env`.
+
 Após, execute as migrations e inicie o container:
 
 ```sh
