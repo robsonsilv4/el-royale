@@ -85,8 +85,8 @@ class UserModelTests(APITestCase):
     def test_get_full_name_returns_name(self):
         self.assertEqual(self.user.get_full_name(), "João Silva")
 
-    def test_get_shot_name_returns_name(self):
-        self.assertEqual(self.user.get_shot_name(), "João Silva")
+    def test_get_short_name_returns_name(self):
+        self.assertEqual(self.user.get_short_name(), "João Silva")
 
     def test_str_returns_name(self):
         self.assertEqual(str(self.user), "João Silva")

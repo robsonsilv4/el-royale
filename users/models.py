@@ -52,7 +52,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     def get_full_name(self):
         return self.name
 
-    def get_shot_name(self):
+    def get_short_name(self):
         return self.name
 
     def __str__(self):
