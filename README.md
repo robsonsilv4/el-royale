@@ -6,7 +6,7 @@ O nome El Royale é inspirado no filme: Maus Momentos no Hotel Royale de 2018.
 
 ## Stack
 
-- [Django 5.2](https://www.djangoproject.com/) (Python 3.14)
+- [Django 5.2 (LTS)](https://www.djangoproject.com/) (Python 3.14)
 - [Django REST Framework 3.18](https://www.django-rest-framework.org/)
 - [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/)
 - [django-filter](https://django-filter.readthedocs.io/)
@@ -58,7 +58,7 @@ curl -X POST http://127.0.0.1:8000/api/v1/login/refresh/ \
 
 ## Documentação
 
-A documentação interativa (Swagger) está disponível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/). Há também uma interface web navegável (Browsable API) nos próprios endpoints.
+A documentação interativa (Swagger) está disponível em [http://127.0.0.1:8000/api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/). Há também uma interface web navegável (Browsable API) nos próprios endpoints.
 
 ## Como rodar
 
@@ -92,20 +92,20 @@ sudo pacman -S docker docker-compose
 3. Execute as migrations e inicie o container:
 
    ```sh
-   docker-compose run web python /code/manage.py migrate --noinput
-   docker-compose up -d --build
+   docker compose run web python /code/manage.py migrate --noinput
+   docker compose up -d --build
    ```
 
 4. Opcional: crie um usuário administrador.
 
    ```sh
-   docker-compose run web python /code/manage.py createsuperuser
+   docker compose run web python /code/manage.py createsuperuser
    ```
 
 5. Opcional: carregue os dados iniciais do banco.
 
-   ```
-   docker-compose run web python /code/manage.py loaddata fixtures.json
+   ```sh
+   docker compose run web python /code/manage.py loaddata fixtures.json
    ```
 
 ## Variáveis de ambiente
@@ -124,10 +124,10 @@ Copie o `.env.example` para `.env` e ajuste os valores. O arquivo `.env` já é 
 Para executar a suíte de testes automatizados (users, hotels e rooms):
 
 ```sh
-docker-compose run web pytest
+docker compose run web pytest
 ```
 
-Também há uma [collection de exemplo para o Postman](collection) para explorar os endpoints manualmente.
+Também há uma [collection de exemplo para o Postman](collections) para explorar os endpoints manualmente.
 
 ## Estilo de código
 
