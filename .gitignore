@@ -4,3 +4,6 @@ __pycache__/
 *.pyc
 *.sqlite3
 .env
+.coverage
+mutants/
+mutation.db
