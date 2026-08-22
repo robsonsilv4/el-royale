@@ -71,7 +71,7 @@ Os testes também podem ser realizados com o Postman, utilizando a [collection d
 
 ### Estilo de código
 
-O projeto utiliza o guia de estilos do [PEP8](https://www.python.org/dev/peps/pep-0008/).
+O projeto utiliza o guia de estilos do [PEP8](https://peps.python.org/pep-0008/).
 
 ## Feito utilizando
 
