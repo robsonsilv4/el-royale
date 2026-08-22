@@ -4,3 +4,11 @@ __pycache__/
 *.pyc
 .env
 .dockerignore
+.gitignore
+*.sqlite3
+.coverage
+htmlcov/
+mutants/
+mutation.db
+.pytest_cache/
+.ruff_cache/
