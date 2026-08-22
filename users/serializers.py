@@ -10,7 +10,7 @@ class UserSerializer(ModelSerializer):
         model = User
         fields = ("public_id", "name", "email", "password")
 
-    # Para encriptar a senha
+    # Para hashear a senha
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
