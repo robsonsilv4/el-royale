@@ -5,8 +5,11 @@ ENV PYTHONUNBUFFERED 1
 
 WORKDIR /code
 
-RUN pip install pipenv
-COPY Pipfile Pipfile.lock /code/
-RUN pipenv install --system
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+COPY pyproject.toml uv.lock /code/
+ENV UV_PROJECT_ENVIRONMENT=/opt/venv
+RUN uv sync --frozen --no-install-project
+
+ENV PATH="/opt/venv/bin:$PATH"
 
 COPY . /code/
