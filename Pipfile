@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+ruff = "*"
 
 [packages]
 django = "~=5.2"
