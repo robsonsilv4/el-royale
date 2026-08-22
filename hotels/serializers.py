@@ -4,8 +4,6 @@ from .models import Hotel
 
 
 class HotelSerializer(ModelSerializer):
-    # rooms = RoomSerializer(many=True, read_only=True)
-
     class Meta:
         model = Hotel
         fields = (
@@ -15,4 +13,4 @@ class HotelSerializer(ModelSerializer):
             "city",
             "state",
             "phone",
-        )  # 'rooms'
+        )
