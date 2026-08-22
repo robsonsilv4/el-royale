@@ -3,6 +3,8 @@ version: '3.7'
 services:
   db:
     image: postgres:17-alpine
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data/
   web:
@@ -12,6 +14,7 @@ services:
       DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY}
       DJANGO_DEBUG: ${DJANGO_DEBUG:-false}
       DJANGO_ALLOWED_HOSTS: ${DJANGO_ALLOWED_HOSTS:-}
+      DJANGO_DB_PASSWORD: ${POSTGRES_PASSWORD}
     volumes:
       - .:/code
     ports:
