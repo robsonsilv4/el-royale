@@ -1,6 +1,6 @@
 # El Royale API
 
-API RESTFul de gerenciamento de cadastro de hotéis, desenvolvida para o desafio da Stopover.
+API RESTful de gerenciamento de cadastro de hotéis, desenvolvida para o desafio da Stopover.
 
 O nome El Royale é inspirado no filme: Maus Momentos no Hotel Royale de 2018.
 
@@ -26,7 +26,7 @@ Todos os endpoints ficam sob `/api/v1/`:
 | POST | `/api/v1/login/` | público | autentica e retorna tokens JWT |
 | POST | `/api/v1/login/refresh/` | público | renova o access token |
 | GET/POST | `/api/v1/users/` | GET: admin; POST: público | lista/cria usuários |
-| PUT/PATCH/DELETE | `/api/v1/users/{public_id}/` | autenticado (dono) | atualiza/deleta o próprio perfil |
+| PUT/PATCH/DELETE | `/api/v1/users/{id}/` | PUT/PATCH: autenticado (dono); DELETE: admin | atualiza o próprio perfil / deleta usuário |
 | GET/POST | `/api/v1/hotels/` | GET: público; POST: autenticado | lista (paginada e filtrável) / cria hotéis |
 | GET/PUT/PATCH/DELETE | `/api/v1/hotels/{id}/` | GET: público; PUT/PATCH: autenticado; DELETE: admin | detalhe/atualiza/deleta hotel |
 | GET/POST | `/api/v1/hotels/{id}/rooms/` | GET: público; POST: autenticado | lista/cria quartos do hotel |
@@ -115,6 +115,7 @@ sudo pacman -S docker docker-compose
 | `DJANGO_SECRET_KEY` | sim | — | chave secreta do Django; gere com `secrets.token_urlsafe(50)` |
 | `DJANGO_DEBUG` | não | `false` | liga o modo de depuração |
 | `DJANGO_ALLOWED_HOSTS` | não | vazio | hosts permitidos, separados por vírgula |
+| `POSTGRES_PASSWORD` | sim | — | senha do banco PostgreSQL; usada pelo serviço `db` e repassada ao Django como `DJANGO_DB_PASSWORD` |
 
 Copie o `.env.example` para `.env` e ajuste os valores. O arquivo `.env` já é ignorado pelo git.
 
@@ -123,14 +124,14 @@ Copie o `.env.example` para `.env` e ajuste os valores. O arquivo `.env` já é 
 Para executar a suíte de testes automatizados (users, hotels e rooms):
 
 ```sh
-docker-compose run web python /code/manage.py test
+docker-compose run web pytest
 ```
 
 Também há uma [collection de exemplo para o Postman](collection) para explorar os endpoints manualmente.
 
 ## Estilo de código
 
-O projeto utiliza o guia de estilos do [PEP8](https://peps.python.org/pep-0008/).
+O projeto usa o [ruff](https://docs.astral.sh/ruff/) como linter e formatador (configuração em `pyproject.toml`), seguindo o guia de estilos do [PEP8](https://peps.python.org/pep-0008/).
 
 ## Autor
 
