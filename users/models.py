@@ -17,7 +17,7 @@ class UserManager(BaseUserManager):
         email = self.normalize_email(email)
         user = self.model(name=name, email=email)
         user.set_password(password)
-        user.save(using=self._db)
+        user.save(using=self._db)  # pragma: no mutate -- using=None is equivalent
 
         return user
 
@@ -25,7 +25,7 @@ class UserManager(BaseUserManager):
         user = self.create_user(name, email, password)
         user.is_superuser = True
         user.is_staff = True
-        user.save(using=self._db)
+        user.save(using=self._db)  # pragma: no mutate -- using=None is equivalent
 
         return user
 

@@ -18,7 +18,7 @@ class HotelViewSet(ModelViewSet):
     )
 
     def get_permissions(self):
-        permission_classes = []
+        permission_classes = []  # pragma: no mutate -- always reassigned below
 
         if self.action == "list" or self.action == "retrieve":
             permission_classes = [

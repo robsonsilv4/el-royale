@@ -19,7 +19,7 @@ class RoomViewSet(ModelViewSet):
         serializer.save(hotel_id=self.kwargs["hotel_pk"])
 
     def get_permissions(self):
-        permission_classes = []
+        permission_classes = []  # pragma: no mutate -- always reassigned below
 
         if self.action == "list" or self.action == "retrieve":
             permission_classes = [
