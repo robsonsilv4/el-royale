@@ -69,7 +69,9 @@ class RoomCreateTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(response.data["hotel"], str(self.hotel.id))
-        self.assertEqual(Room.objects.get(pk=response.data["id"]).hotel_id, self.hotel.id)
+        self.assertEqual(
+            Room.objects.get(pk=response.data["id"]).hotel_id, self.hotel.id
+        )
 
 
 class RoomValidationTests(APITestCase):
@@ -145,17 +147,23 @@ class RoomDestroyTests(APITestCase):
         self.room = Room.objects.create(number=101, hotel=self.hotel)
 
     def test_destroy_requires_admin(self):
-        response = self.client.delete(f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/")
+        response = self.client.delete(
+            f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/"
+        )
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
         self.client.force_authenticate(self.user)
-        response = self.client.delete(f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/")
+        response = self.client.delete(
+            f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/"
+        )
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
     def test_destroy_not_found_outside_parent_hotel(self):
         self.client.force_authenticate(self.admin)
 
-        response = self.client.delete(f"/api/v1/hotels/{self.other_hotel.id}/rooms/{self.room.id}/")
+        response = self.client.delete(
+            f"/api/v1/hotels/{self.other_hotel.id}/rooms/{self.room.id}/"
+        )
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
         self.assertTrue(Room.objects.filter(id=self.room.id).exists())
@@ -163,7 +171,9 @@ class RoomDestroyTests(APITestCase):
     def test_admin_can_destroy_room(self):
         self.client.force_authenticate(self.admin)
 
-        response = self.client.delete(f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/")
+        response = self.client.delete(
+            f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/"
+        )
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertFalse(Room.objects.filter(id=self.room.id).exists())
@@ -178,13 +188,17 @@ class RoomRetrieveUpdateTests(APITestCase):
         self.room = Room.objects.create(number=101, hotel=self.hotel)
 
     def test_retrieve_is_public(self):
-        response = self.client.get(f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/")
+        response = self.client.get(
+            f"/api/v1/hotels/{self.hotel.id}/rooms/{self.room.id}/"
+        )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data["number"], 101)
 
     def test_room_not_found_outside_parent_hotel(self):
-        response = self.client.get(f"/api/v1/hotels/{self.other_hotel.id}/rooms/{self.room.id}/")
+        response = self.client.get(
+            f"/api/v1/hotels/{self.other_hotel.id}/rooms/{self.room.id}/"
+        )
 
         self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
 

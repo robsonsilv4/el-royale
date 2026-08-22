@@ -131,7 +131,11 @@ class UpdateOwnProfileTests(APITestCase):
 
         response = self.client.put(
             f"/api/v1/users/{self.user.id}/",
-            {"name": "Novo Nome", "email": "joao@example.com", "password": "nova-senha-123"},
+            {
+                "name": "Novo Nome",
+                "email": "joao@example.com",
+                "password": "nova-senha-123",
+            },
             format="json",
         )
 
@@ -145,7 +149,9 @@ class UpdateOwnProfileTests(APITestCase):
         self.client.force_authenticate(self.user)
 
         response = self.client.patch(
-            f"/api/v1/users/{self.user.id}/", {"password": "nova-senha-123"}, format="json"
+            f"/api/v1/users/{self.user.id}/",
+            {"password": "nova-senha-123"},
+            format="json",
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -157,7 +163,9 @@ class UpdateOwnProfileTests(APITestCase):
         self.client.force_authenticate(self.user)
 
         response = self.client.patch(
-            f"/api/v1/users/{self.other_user.id}/", {"name": "Nome Hackeado"}, format="json"
+            f"/api/v1/users/{self.other_user.id}/",
+            {"name": "Nome Hackeado"},
+            format="json",
         )
 
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)

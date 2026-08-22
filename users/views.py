@@ -24,7 +24,11 @@ class UserViewSet(ModelViewSet):
                 IsAuthenticated,
                 UpdateOwnProfile,
             ]
-        elif self.action == "list" or self.action == "retrieve" or self.action == "destroy":
+        elif (
+            self.action == "list"
+            or self.action == "retrieve"
+            or self.action == "destroy"
+        ):
             permission_classes = [
                 IsAdminUser,
             ]
