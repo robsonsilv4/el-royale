@@ -4,6 +4,19 @@ API RESTFul de gerenciamento de cadastro de hotéis, desenvolvida para o desafio
 
 O nome El Royale é inspirado no filme: Maus Momentos no Hotel Royale de 2018.
 
+## Stack
+
+- [Django 5.2](https://www.djangoproject.com/) (Python 3.14)
+- [Django REST Framework 3.18](https://www.django-rest-framework.org/)
+- [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/)
+- [django-filter](https://django-filter.readthedocs.io/)
+- [django-cors-headers](https://github.com/adamchainz/django-cors-headers)
+- [drf-nested-routers](https://github.com/alanjds/drf-nested-routers)
+- [drf-spectacular](https://drf-spectacular.readthedocs.io/) (Swagger em `/api/v1/docs/` e schema em `/api/v1/schema/`)
+- [PostgreSQL](https://www.postgresql.org/) / [SQLite](https://www.sqlite.org/)
+- [Docker](https://www.docker.com/) / [Docker Compose](https://docs.docker.com/compose/)
+- [Pipenv](https://pipenv.pypa.io/)
+
 ## Endpoints
 
 Todos os endpoints ficam sob `/api/v1/`:
@@ -43,9 +56,11 @@ curl -X POST http://127.0.0.1:8000/api/v1/login/refresh/ \
   -d '{"refresh": "<refresh>"}'
 ```
 
-## Descrição
+## Documentação
 
-As instruções a seguir apresentam como rodar o projeto em sua máquina.
+A documentação interativa (Swagger) está disponível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/). Há também uma interface web navegável (Browsable API) nos próprios endpoints.
+
+## Como rodar
 
 ### Pré-requisitos
 
@@ -59,44 +74,39 @@ sudo pacman -S docker docker-compose
 
 ### Inicialização
 
-Clone o repositório:
+1. Clone o repositório:
 
-```sh
-git clone https://github.com/robsonsilv4/el-royale.git && cd el-royale
-```
+   ```sh
+   git clone https://github.com/robsonsilv4/el-royale.git && cd el-royale
+   ```
 
-Configure as variáveis de ambiente copiando o exemplo e gerando uma chave secreta real:
+2. Configure as variáveis de ambiente copiando o exemplo e gerando uma chave secreta real:
 
-```sh
-cp .env.example .env
-python -c "import secrets; print(secrets.token_urlsafe(50))"
-```
+   ```sh
+   cp .env.example .env
+   python -c "import secrets; print(secrets.token_urlsafe(50))"
+   ```
 
-Cole o valor gerado como `DJANGO_SECRET_KEY` no arquivo `.env`.
+   Cole o valor gerado como `DJANGO_SECRET_KEY` no arquivo `.env`.
 
-Após, execute as migrations e inicie o container:
+3. Execute as migrations e inicie o container:
 
-```sh
-docker-compose run web python /code/manage.py migrate --noinput
+   ```sh
+   docker-compose run web python /code/manage.py migrate --noinput
+   docker-compose up -d --build
+   ```
 
-docker-compose up -d --build
-```
+4. Opcional: crie um usuário administrador.
 
-Caso queira criar um usuário administrador, execute:
+   ```sh
+   docker-compose run web python /code/manage.py createsuperuser
+   ```
 
-```sh
-docker-compose run web python /code/manage.py createsuperuser
-```
+5. Opcional: carregue os dados iniciais do banco.
 
-Para carregar os dados iniciais do banco, execute:
-
-```
-docker-compose run web python /code/manage.py loaddata fixtures.json
-```
-
-### Documentação
-
-A documentação interativa (Swagger) está disponível em [api/v1/docs/](http://127.0.0.1:8000/api/v1/docs/). Há também uma interface web navegável (Browsable API) nos próprios endpoints.
+   ```
+   docker-compose run web python /code/manage.py loaddata fixtures.json
+   ```
 
 ## Variáveis de ambiente
 
@@ -118,22 +128,9 @@ docker-compose run web python /code/manage.py test
 
 Também há uma [collection de exemplo para o Postman](collection) para explorar os endpoints manualmente.
 
-### Estilo de código
+## Estilo de código
 
 O projeto utiliza o guia de estilos do [PEP8](https://peps.python.org/pep-0008/).
-
-## Stack
-
-- [Django 5.2](https://www.djangoproject.com/) (Python 3.14)
-- [Django REST Framework 3.18](https://www.django-rest-framework.org/)
-- [SimpleJWT](https://django-rest-framework-simplejwt.readthedocs.io/)
-- [django-filter](https://django-filter.readthedocs.io/)
-- [django-cors-headers](https://github.com/adamchainz/django-cors-headers)
-- [drf-nested-routers](https://github.com/alanjds/drf-nested-routers)
-- [drf-spectacular](https://drf-spectacular.readthedocs.io/) (Swagger em `/api/v1/docs/` e schema em `/api/v1/schema/`)
-- [PostgreSQL](https://www.postgresql.org/) / [SQLite](https://www.sqlite.org/)
-- [Docker](https://www.docker.com/) / [Docker Compose](https://docs.docker.com/compose/)
-- [Pipenv](https://pipenv.pypa.io/)
 
 ## Autor
 
