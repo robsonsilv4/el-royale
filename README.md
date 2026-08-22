@@ -23,7 +23,7 @@ sudo pacman -S docker docker-compose
 Clone o repositório:
 
 ```sh
-git clone https://github.com/robsonsilv4/ElRoyale.git && cd ElRoyale
+git clone https://github.com/robsonsilv4/el-royale.git && cd el-royale
 ```
 
 Após, execute as migrations e inicie o container:
