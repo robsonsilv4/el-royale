@@ -10,22 +10,28 @@ class RoomViewSet(ModelViewSet):
     serializer_class = RoomSerializer
 
     def get_queryset(self):
-        return Room.objects.filter(hotel=self.kwargs['hotel_pk'])
+        return Room.objects.filter(hotel=self.kwargs["hotel_pk"])
 
     def perform_create(self, serializer):
-        serializer.save(hotel_id=self.kwargs['hotel_pk'])
+        serializer.save(hotel_id=self.kwargs["hotel_pk"])
 
     def perform_update(self, serializer):
-        serializer.save(hotel_id=self.kwargs['hotel_pk'])
+        serializer.save(hotel_id=self.kwargs["hotel_pk"])
 
     def get_permissions(self):
         permission_classes = []
 
-        if self.action == 'list' or self.action == 'retrieve':
-            permission_classes = [AllowAny, ]
-        elif self.action == 'destroy':
-            permission_classes = [IsAdminUser, ]
+        if self.action == "list" or self.action == "retrieve":
+            permission_classes = [
+                AllowAny,
+            ]
+        elif self.action == "destroy":
+            permission_classes = [
+                IsAdminUser,
+            ]
         else:
-            permission_classes = [IsAuthenticated, ]
+            permission_classes = [
+                IsAuthenticated,
+            ]
 
         return [permission() for permission in permission_classes]

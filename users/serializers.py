@@ -1,4 +1,3 @@
-from django.contrib.auth import get_user_model
 from rest_framework.serializers import CharField, ModelSerializer
 
 from .models import User
@@ -9,14 +8,14 @@ class UserSerializer(ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('public_id', 'name', 'email', 'password')
+        fields = ("public_id", "name", "email", "password")
 
     # Para encriptar a senha
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
 
     def update(self, instance, validated_data):
-        password = validated_data.pop('password', None)
+        password = validated_data.pop("password", None)
         for attr, value in validated_data.items():
             setattr(instance, attr, value)
         if password:

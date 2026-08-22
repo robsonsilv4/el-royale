@@ -1,7 +1,5 @@
 from rest_framework.serializers import ModelSerializer
 
-from rooms.serializers import RoomSerializer
-
 from .models import Hotel
 
 
@@ -10,5 +8,11 @@ class HotelSerializer(ModelSerializer):
 
     class Meta:
         model = Hotel
-        fields = ('id', 'name',  'address', 'city',
-                  'state', 'phone',)  # 'rooms'
+        fields = (
+            "id",
+            "name",
+            "address",
+            "city",
+            "state",
+            "phone",
+        )  # 'rooms'
