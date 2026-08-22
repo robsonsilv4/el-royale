@@ -1,7 +1,7 @@
 [project]
 name = "el-royale"
 version = "0.1.0"
-description = "API para gerenciamento de cadastro de hotéis"
+description = "API RESTful de gerenciamento de hotéis e quartos em Django REST Framework (desafio Stopover)"
 requires-python = ">=3.14"
 dependencies = [
     "django~=5.2",
