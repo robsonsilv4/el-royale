@@ -27,6 +27,12 @@ dev = [
 [tool.uv]
 package = false
 
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "config.test_settings"
+pythonpath = ["."]
+addopts = ["-q"]
+python_files = ["tests.py", "test_*.py", "*_test.py"]
+
 [tool.ruff]
 target-version = "py314"
 line-length = 88
