@@ -129,6 +129,21 @@ class RoomValidationTests(APITestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertEqual(
+            response.data["number"],
+            ["Já existe um quarto com este número neste hotel."],
+        )
+
+    def test_allows_different_number_in_same_hotel(self):
+        Room.objects.create(number=101, hotel=self.hotel)
+
+        response = self.client.post(
+            f"/api/v1/hotels/{self.hotel.id}/rooms/",
+            room_payload(number=102),
+            format="json",
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
     def test_allows_same_number_in_different_hotels(self):
         other_hotel = make_hotel(name="Hotel Recife", city="Recife", state="PE")
@@ -254,7 +269,10 @@ class RoomRetrieveUpdateTests(APITestCase):
         )
 
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
-        self.assertIn("number", response.data)
+        self.assertEqual(
+            response.data["number"],
+            ["Já existe um quarto com este número neste hotel."],
+        )
 
     def test_update_allows_keeping_own_number(self):
         self.client.force_authenticate(self.user)

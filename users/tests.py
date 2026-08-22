@@ -66,6 +66,17 @@ class UserManagerTests(APITestCase):
 
         self.assertEqual(str(context.exception), "O email é obrigatório.")
 
+    def test_create_superuser_sets_flags_and_preserves_password(self):
+        admin = User.objects.create_superuser(
+            name="Admin", email="admin@example.com", password="senha-segura-123"
+        )
+
+        self.assertTrue(admin.is_superuser)
+        self.assertTrue(admin.is_staff)
+        self.assertEqual(admin.name, "Admin")
+        self.assertEqual(admin.email, "admin@example.com")
+        self.assertTrue(admin.check_password("senha-segura-123"))
+
 
 class UserModelTests(APITestCase):
     def setUp(self):
@@ -147,6 +158,19 @@ class UpdateOwnProfileTests(APITestCase):
     def test_update_requires_authentication(self):
         response = self.client.patch(
             f"/api/v1/users/{self.user.id}/", {"name": "Novo Nome"}, format="json"
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_update_with_put_requires_authentication(self):
+        response = self.client.put(
+            f"/api/v1/users/{self.user.id}/",
+            {
+                "name": "Novo Nome",
+                "email": "joao@example.com",
+                "password": "nova-senha-123",
+            },
+            format="json",
         )
 
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
