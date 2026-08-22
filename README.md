@@ -4,6 +4,45 @@ API RESTFul de gerenciamento de cadastro de hotéis, desenvolvida para o desafio
 
 O nome El Royale é inspirado no filme: Maus Momentos no Hotel Royale de 2018.
 
+## Endpoints
+
+Todos os endpoints ficam sob `/api/v1/`:
+
+| Método | Endpoint | Acesso | Descrição |
+|---|---|---|---|
+| POST | `/api/v1/login/` | público | autentica e retorna tokens JWT |
+| POST | `/api/v1/login/refresh/` | público | renova o access token |
+| GET/POST | `/api/v1/users/` | GET: admin; POST: público | lista/cria usuários |
+| PUT/PATCH/DELETE | `/api/v1/users/{public_id}/` | autenticado (dono) | atualiza/deleta o próprio perfil |
+| GET/POST | `/api/v1/hotels/` | GET: público; POST: autenticado | lista (paginada e filtrável) / cria hotéis |
+| GET/PUT/PATCH/DELETE | `/api/v1/hotels/{id}/` | GET: público; PUT/PATCH: autenticado; DELETE: admin | detalhe/atualiza/deleta hotel |
+| GET/POST | `/api/v1/hotels/{id}/rooms/` | GET: público; POST: autenticado | lista/cria quartos do hotel |
+| GET/PUT/PATCH/DELETE | `/api/v1/hotels/{id}/rooms/{room_id}/` | GET: público; PUT/PATCH: autenticado; DELETE: admin | detalhe/atualiza/deleta quarto |
+| GET | `/api/v1/docs/` | público | documentação Swagger |
+| GET | `/api/v1/schema/` | público | schema OpenAPI |
+
+Filtros em `/api/v1/hotels/`: `?name=`, `?address=`, `?city=`, `?state=`. Paginação via `?page=`.
+
+## Autenticação
+
+Toda rota protegida aceita o token JWT via header `Authorization: Bearer <access>`.
+
+Para obter os tokens:
+
+```sh
+curl -X POST http://127.0.0.1:8000/api/v1/login/ \
+  -H 'Content-Type: application/json' \
+  -d '{"email": "seu@email.com", "password": "sua-senha"}'
+```
+
+A resposta traz `access` e `refresh`. Quando o access expirar, renove:
+
+```sh
+curl -X POST http://127.0.0.1:8000/api/v1/login/refresh/ \
+  -H 'Content-Type: application/json' \
+  -d '{"refresh": "<refresh>"}'
+```
+
 ## Descrição
 
 As instruções a seguir apresentam como rodar o projeto em sua máquina.
